@@ -30,27 +30,24 @@ class Employee:
     
     def __repr__(self):
         return "Employee('{}', '{}', {})".format(self.first, self.last, self.pay)
+class WindowManager(ScreenManager):
+    pass
 
+class LoginScreen(Screen):
+    pass
+
+class Nav(Screen):
+    pass
 
 class GoodTrainerApp(App):
     theme_cls = ThemeManager()
     theme_cls.accent_palette = 'Blue'
     theme_cls.primery_palette = 'Green'
     theme_cls.theme_style = 'Light'
-    def btn(self):
-        print(self.username.text)
+    def build(self):
+        return WindowManager()
     
-
-    
-class WindowManager(ScreenManager):
-    pass
-class newUser(Screen):
-    username = ObjectProperty(None)
-    password = ObjectProperty(None)
-    
-    def btn(self):
-        print(self.username.text)
-    
+        
 
 
 

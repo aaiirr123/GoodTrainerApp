@@ -1,102 +1,109 @@
-NavigationLayout:
 
-    username: username
-    password: password
-    MDNavigationDrawer:
-        NavigationDrawerSubheader:
-            text: "Menu:"
-        NavigationDrawerIconButton:
-            text: "Screen 1"
-            on_release:
-                screen_manager.current = "Screen1"
-        NavigationDrawerIconButton:
-            text: "Screen 2"
-            on_release:
-                screen_manager.current = "Screen2"
+<ScreenManager>:
+    LoginScreen:
+    Nav:
+<LoginScreen>:
+    name: 'LoginScreen'
     BoxLayout:
-        orientation:'vertical'   
-        MDToolbar:
-            title:'Good trainer'  
-            md_bg_color: app.theme_cls.primary_color
-            left_action_items: [['menu', lambda x: root.toggle_nav_drawer()]]
-        ScreenManager:
-            id:screen_manager
-            newUser:
-            Screen:
-                name: 'LoginScreen'
-                BoxLayout:
-                    spacing: 30
-                    padding: 30
-                   
-                    orientation: 'vertical'
-                    Image:
-                        source:'logo.png'
-                    MDLabel:
-                        text: "Login"
-                    MDTextFieldRound:
-                        icon_left: 'email'
-                        foreground_color: 0.2,.2,.2,.9 
-                        icon_type: 'left'
-                        hint_text: 'Email'   
+        spacing: 30
+        padding: 30
+        
+        orientation: 'vertical'
+        Image:
+            source:'logo.png'
+        MDLabel:
+            text: "Login"
+        MDTextFieldRound:
+            icon_left: 'email'
+            foreground_color: 0.2,.2,.2,.9 
+            icon_type: 'left'
+            hint_text: 'Email'   
 
 
-                    MDTextFieldRound:
-                        icon_left: 'lock'
-                        icon_type: 'left'
-                        hint_text: 'Password'
-                        foreground_color: 0.2,.2,.2,.9 
+        MDTextFieldRound:
+            icon_left: 'lock'
+            icon_type: 'left'
+            hint_text: 'Password'
+            foreground_color: 0.2,.2,.2,.9 
 
-                    MDRectangleFlatIconButton:
-                        text: "Sign In"
-                        icon: "language-python"
-                        width: dp(230)
-                        pos_hint: {'center_x': .5}
+        MDRectangleFlatIconButton:
+            text: "Sign In"
+            icon: "language-python"
+            width: dp(230)
+            pos_hint: {'center_x': .5}
 
-                    MDRectangleFlatIconButton:
-                        text: "Create New Account"
-                        icon: "language-python"
-                        width: dp(230)
-                        pos_hint: {'center_x': .5}
-                        on_release:
-                            screen_manager.current = "newUser"
-                        
+        MDRectangleFlatIconButton:
+            text: "Create New Account"
+            icon: "language-python"
+            width: dp(230)
+            pos_hint: {'center_x': .5}
+            on_release:
+                screen_manager.current = "Nav"
+            
 
-            newUser:
-                name:'newUser'
-                BoxLayout:
-                    spacing: 30
-                    padding: 30
-                   
-                    orientation: 'vertical'
+<Nav>:
+    NavigationLayout:
+        MDNavigationDrawer:
+            NavigationDrawerSubheader:
+                text: "Menu:"
+            NavigationDrawerIconButton:
+                text: "Screen 1"
+                on_release:
+                    screen_manager.current = "Screen1"
+            NavigationDrawerIconButton:
+                text: "Screen 2"
+                on_release:
+                    screen_manager.current = "Screen2"
+        BoxLayout:
+            orientation:'vertical'   
+            MDToolbar:
+                title:'Good trainer'  
+                md_bg_color: app.theme_cls.primary_color
+                left_action_items: [['menu', lambda x: root.toggle_nav_drawer()]]
+            ScreenManager:
+                id:screen_manager
                 
-                    MDTextFieldRound:
-                        id: username
-                        icon_left: 'email'
-                        foreground_color: 0.2,.2,.2,.9 
-                        icon_type: 'left'
-                        hint_text: 'Email'   
-                        
+                
+                
+                Screen:
 
-
-                    MDTextFieldRound:
-                        id: password
-                        icon_left: 'lock'
-                        icon_type: 'left'
-                        hint_text: 'Password'
-                        foreground_color: 0.2,.2,.2,.9 
-
-                    MDRectangleFlatIconButton:
-                        text: "Create Account"
-                        icon: "language-python"
-                        width: dp(230)
-                        pos_hint: {'center_x': .5}   
-                        on_press:
-                            root.btn()
-                    Button:
-                        text:'Click me'
-                        on_press: GoodTrainerApp.btn()
+                    name:'newUser'
+                    username: username
+                    password: password
+                    BoxLayout:
+                        spacing: 30
+                        padding: 30
                     
-            Screen:
-                name: 'Screen2'
-                MDLabel:
-                    text: "Screen 2"
+                        orientation: 'vertical'
+                    
+                        MDTextFieldRound:
+                            id: username
+                            icon_left: 'email'
+                            foreground_color: 0.2,.2,.2,.9 
+                            icon_type: 'left'
+                            hint_text: 'Email'   
+                            
+
+
+                        MDTextFieldRound:
+                            id: password
+                            icon_left: 'lock'
+                            icon_type: 'left'
+                            hint_text: 'Password'
+                            foreground_color: 0.2,.2,.2,.9 
+
+                        MDRectangleFlatIconButton:
+                            text: "Create Account"
+                            icon: "language-python"
+                            width: dp(230)
+                            pos_hint: {'center_x': .5}   
+                            on_press:
+                                app.createbtn()
+                        Button:
+                            text:'Click me'
+                            on_press: app.btn()
+                        
+                Screen:
+                    name: 'Screen2'
+                    MDLabel:
+                        text: "Screen 2"
