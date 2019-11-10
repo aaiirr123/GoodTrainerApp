@@ -1,5 +1,5 @@
 
-<ScreenManager>:
+<WindowManager>:
     LoginScreen:
     Nav:
 <LoginScreen>:
@@ -31,6 +31,8 @@
             icon: "language-python"
             width: dp(230)
             pos_hint: {'center_x': .5}
+            on_release:
+                app.root.current = "Nav"
 
         MDRectangleFlatIconButton:
             text: "Create New Account"
@@ -38,10 +40,11 @@
             width: dp(230)
             pos_hint: {'center_x': .5}
             on_release:
-                screen_manager.current = "Nav"
+                app.root.current = "Nav"
             
 
 <Nav>:
+    name:'Nav'
     NavigationLayout:
         MDNavigationDrawer:
             NavigationDrawerSubheader:
@@ -63,13 +66,23 @@
             ScreenManager:
                 id:screen_manager
                 
-                
-                
+
+                Screen:
+                    name: 'createWorkout'
+
+                    BoxLayout:
+                        orientation:'vertical'
+
+                        MDExpansionPanel:
+                            id: item_anim
+                            title: 'Aaron'
+                           
+
+
                 Screen:
 
                     name:'newUser'
-                    username: username
-                    password: password
+                    
                     BoxLayout:
                         spacing: 30
                         padding: 30
@@ -77,13 +90,15 @@
                         orientation: 'vertical'
                     
                         MDTextFieldRound:
-                            id: username
+                            
                             icon_left: 'email'
                             foreground_color: 0.2,.2,.2,.9 
                             icon_type: 'left'
                             hint_text: 'Email'   
                             
-
+                        TextInput:
+                            id: username
+                            text:'put something'
 
                         MDTextFieldRound:
                             id: password
@@ -101,7 +116,7 @@
                                 app.createbtn()
                         Button:
                             text:'Click me'
-                            on_press: app.btn()
+                            on_press: app.root.createbtn()
                         
                 Screen:
                     name: 'Screen2'

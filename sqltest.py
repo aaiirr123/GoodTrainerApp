@@ -37,13 +37,20 @@ class LoginScreen(Screen):
     pass
 
 class Nav(Screen):
-    pass
+    username = ObjectProperty(None)
+    def createbtn(self):
+        print(self.username.text)
 
 class GoodTrainerApp(App):
     theme_cls = ThemeManager()
     theme_cls.accent_palette = 'Blue'
     theme_cls.primery_palette = 'Green'
     theme_cls.theme_style = 'Light'
+
+    username = ObjectProperty(None)
+    def createbtn(self):
+        username = self.username.text
+        print(username)
     def build(self):
         return WindowManager()
     
