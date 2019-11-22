@@ -1,0 +1,76 @@
+<Admin>:
+    NavigationLayout:
+        id: foobar
+        MDNavigationDrawer:
+            NavigationDrawerSubheader:
+                text: "Menu:"
+            NavigationDrawerIconButton:
+                text: "Screen 1"
+                on_release:
+                    screen_manager.current = "Screen1"
+            NavigationDrawerIconButton:
+                text: "Screen 2"
+                on_release:
+                    screen_manager.current = "Screen2"
+        BoxLayout:
+            orientation:'vertical'   
+            MDToolbar:
+                title:'Good trainer'  
+                md_bg_color: app.theme_cls.primary_color
+                left_action_items: [['menu', lambda x: root.ids.foobar.toggle_nav_drawer()]]
+            ScreenManager:
+                id:screen_manager
+                
+
+
+
+                Screen:
+
+                    name:'AdminScreen'
+                    
+                    BoxLayout:
+                        spacing: 30
+                        padding: 30
+                    
+                        orientation: 'vertical'
+                    
+                        MDLabel:
+                            text:'Welcome Admin: '
+                            
+                           
+                          
+                        MDTextFieldRound:
+                            id: username
+                            
+                            foreground_color: 0.2,.2,.2,.9 
+                            icon_type: 'left'
+                            hint_text: 'Email' 
+
+                    
+                        
+                                                  
+                       
+
+                        MDTextFieldRound:
+                            id: password
+                            icon_left: 'lock'
+                            icon_type: 'left'
+                            hint_text: 'Password'
+                            foreground_color: 0.2,.2,.2,.9 
+
+                        MDRectangleFlatIconButton:
+                            text: "Create Account"
+                            icon: "language-python"
+                            width: dp(230)
+                            pos_hint: {'center_x': .5}   
+                            on_press:
+                                root.createbtn()
+                     
+                Screen:
+                    name: 'Screen1'
+                    ScrollView:
+                        size: self.size
+                        BoxLayout:
+                            orientation:'vertical'
+                            MDLabel:
+                                text: "Top workout programs"

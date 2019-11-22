@@ -1,8 +1,10 @@
-
+#:include nav.kv
 <WindowManager>:
     LoginScreen:
     Nav:
 <LoginScreen>:
+    username:emailw
+    password:passw
     name: 'LoginScreen'
     BoxLayout:
         spacing: 30
@@ -14,13 +16,15 @@
         MDLabel:
             text: "Login"
         MDTextFieldRound:
+            id:emailw
             icon_left: 'email'
             foreground_color: 0.2,.2,.2,.9 
             icon_type: 'left'
-            hint_text: 'Email'   
+            hint_text: 'Email' 
 
 
         MDTextFieldRound:
+            id: passw
             icon_left: 'lock'
             icon_type: 'left'
             hint_text: 'Password'
@@ -32,7 +36,7 @@
             width: dp(230)
             pos_hint: {'center_x': .5}
             on_release:
-                app.root.current = "Nav"
+                root.checkCred()
 
         MDRectangleFlatIconButton:
             text: "Create New Account"
@@ -43,82 +47,5 @@
                 app.root.current = "Nav"
             
 
-<Nav>:
-    name:'Nav'
-    NavigationLayout:
-        MDNavigationDrawer:
-            NavigationDrawerSubheader:
-                text: "Menu:"
-            NavigationDrawerIconButton:
-                text: "Screen 1"
-                on_release:
-                    screen_manager.current = "Screen1"
-            NavigationDrawerIconButton:
-                text: "Screen 2"
-                on_release:
-                    screen_manager.current = "Screen2"
-        BoxLayout:
-            orientation:'vertical'   
-            MDToolbar:
-                title:'Good trainer'  
-                md_bg_color: app.theme_cls.primary_color
-                left_action_items: [['menu', lambda x: root.toggle_nav_drawer()]]
-            ScreenManager:
-                id:screen_manager
-                
-
-                Screen:
-                    name: 'createWorkout'
-
-                    BoxLayout:
-                        orientation:'vertical'
-
-                        MDExpansionPanel:
-                            id: item_anim
-                            title: 'Aaron'
-                           
-
-
-                Screen:
-
-                    name:'newUser'
                     
-                    BoxLayout:
-                        spacing: 30
-                        padding: 30
-                    
-                        orientation: 'vertical'
-                    
-                        MDTextFieldRound:
-                            
-                            icon_left: 'email'
-                            foreground_color: 0.2,.2,.2,.9 
-                            icon_type: 'left'
-                            hint_text: 'Email'   
-                            
-                        TextInput:
-                            id: username
-                            text:'put something'
 
-                        MDTextFieldRound:
-                            id: password
-                            icon_left: 'lock'
-                            icon_type: 'left'
-                            hint_text: 'Password'
-                            foreground_color: 0.2,.2,.2,.9 
-
-                        MDRectangleFlatIconButton:
-                            text: "Create Account"
-                            icon: "language-python"
-                            width: dp(230)
-                            pos_hint: {'center_x': .5}   
-                            on_press:
-                                app.createbtn()
-                        Button:
-                            text:'Click me'
-                            on_press: app.root.createbtn()
-                        
-                Screen:
-                    name: 'Screen2'
-                    MDLabel:
-                        text: "Screen 2"

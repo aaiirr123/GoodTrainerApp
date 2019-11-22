@@ -12,34 +12,60 @@ from kivy.uix.floatlayout   import FloatLayout
 from kivymd.theming         import ThemeManager
 from kivy.properties        import ObjectProperty
 
+from databaseStuff          import addToDataBase
+from databaseStuff          import lookForUser
 
-class Employee:
+class UserData:
 
-    def __init__(self, first, last, pay):
+    def __init__(self, first, last, email, password):
         self.first = first
         self.last = last
-        self.pay = pay
+        self.email = email
+        self.password = password
 
-    @property
-    def email(self):
-        return ' {}.{}@email.com'.format(self.first, self.last)
+    # @property
+    # def email(self):
+    #     return ' {}.{}@email.com'.format(self.first, self.last)
 
-    @property
-    def fullname(self):
-        return'{} {}'.format(self.first, self.last)
+    # @property
+    # def fullname(self):
+    #     return'{} {}'.format(self.first, self.last)
     
-    def __repr__(self):
-        return "Employee('{}', '{}', {})".format(self.first, self.last, self.pay)
+    # def __repr__(self):
+    #     return "Employee('{}', '{}', {})".format(self.first, self.last, self.pay)
 class WindowManager(ScreenManager):
     pass
 
 class LoginScreen(Screen):
+    username = ObjectProperty(None)
+    password = ObjectProperty(None)
+
+    def checkCred(self):
+        a = self.username.text
+        b = self.password.text
+        val = lookForUser(a,b)
+
+class Admin(Screen):
     pass
+
 
 class Nav(Screen):
     username = ObjectProperty(None)
+    password = ObjectProperty(None)
+    lastName = ObjectProperty(None)
+    firstName = ObjectProperty(None)
+
     def createbtn(self):
-        print(self.username.text)
+      
+        a = self.firstName.text
+        b = self.lastName.text
+        c = self.username.text
+        d = self.password.text
+        newuse = UserData(a,b,c,d)
+        addToDataBase(newuse)
+
+        print("in nav")
+
 
 class GoodTrainerApp(App):
     theme_cls = ThemeManager()
@@ -47,10 +73,7 @@ class GoodTrainerApp(App):
     theme_cls.primery_palette = 'Green'
     theme_cls.theme_style = 'Light'
 
-    username = ObjectProperty(None)
-    def createbtn(self):
-        username = self.username.text
-        print(username)
+    
     def build(self):
         return WindowManager()
     
