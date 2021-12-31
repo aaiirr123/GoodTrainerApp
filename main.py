@@ -39,7 +39,6 @@ class WindowManager(ScreenManager):
 class LoginScreen(Screen):
     username = ObjectProperty(None)
     password = ObjectProperty(None)
-
     def checkCred(self):
         a = self.username.text
         b = self.password.text
@@ -48,38 +47,27 @@ class LoginScreen(Screen):
 class Admin(Screen):
     pass
 
-
 class Nav(Screen):
     username = ObjectProperty(None)
     password = ObjectProperty(None)
     lastName = ObjectProperty(None)
     firstName = ObjectProperty(None)
-
-    def createbtn(self):
-      
+    def createbtn(self): 
         a = self.firstName.text
         b = self.lastName.text
         c = self.username.text
         d = self.password.text
         newuse = UserData(a,b,c,d)
         addToDataBase(newuse)
-
         print("in nav")
-
 
 class GoodTrainerApp(App):
     theme_cls = ThemeManager()
     theme_cls.accent_palette = 'Blue'
     theme_cls.primery_palette = 'Green'
-    theme_cls.theme_style = 'Light'
-
-    
+    theme_cls.theme_style = 'Light'   
     def build(self):
         return WindowManager()
-    
-        
-
-
 
 if __name__ == "__main__": 
     GoodTrainerApp().run()
